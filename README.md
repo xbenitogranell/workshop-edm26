@@ -9,4 +9,4 @@ c. inspire the next generation of diatom ecologists to create, share, and utiliz
 d. stimulate networking within the Iberoamerican diatom researchers.
 
 # License
-All code and data analysis scripts contained within this repository are publicly accessible under licensed under a Creative Commons By Attribution Non-commercial 4.0 International licence. However, note that the associated database is not public domain, and access to the raw data is restricted. Reasonable requests will be considered.
+All code and data analysis scripts contained within this repository are publicly accessible under a Creative Commons By Attribution Non-commercial 4.0 International licence. However, note that the associated database is not public domain, and access to the raw data is restricted. Reasonable requests will be considered.
