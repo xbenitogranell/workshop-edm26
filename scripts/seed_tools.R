@@ -838,7 +838,6 @@ get_data_by_name <- function(db, name, exact = TRUE, include_envir = FALSE) {
 #' - `original_name`
 #' - `accepted_genus`
 #' - `accepted_name`
-#' - `accepted_abbr`
 #'
 #' Duplicates are removed with `distinct()` and rows are sorted by
 #' `original_name`.
@@ -1080,8 +1079,7 @@ get_data_by_record_id <- function(db, record_ids, include_envir = FALSE) {
         SELECT DISTINCT
         t.original_name,
         t.accepted_genus,
-        t.accepted_name,
-        t.accepted_abbr
+        t.accepted_name
         FROM taxonomy t
         JOIN diatoms  d  ON d.diatom_id  = t.diatom_id
         JOIN samples  sa ON sa.sample_id = d.sample_id
@@ -1097,7 +1095,6 @@ get_data_by_record_id <- function(db, record_ids, include_envir = FALSE) {
         original_name,
         accepted_genus,
         accepted_name,
-        accepted_abbr,
         .keep_all = TRUE
     ) %>%
     dplyr::arrange(original_name)
@@ -2147,7 +2144,7 @@ get_data_by_coordinates <- function(
 #' Given a standard SEeD data object (a list with `metadata`, `diatoms`,
 #' and `taxonomy`), this function renames the **diatom columns** in
 #' `diatoms` using one of the name fields from the `taxonomy` table
-#' (e.g. `accepted_name` or `accepted_abbr`).
+#' (e.g. `accepted_name`).
 #'
 #' Internally, the function:
 #' - Assumes that diatom columns in `diatoms` are currently labelled by
@@ -2184,7 +2181,7 @@ get_data_by_coordinates <- function(
 #'
 #' @param taxonomy_col
 #'   Character scalar giving the name of the taxonomy column to use for
-#'   renaming (e.g. `"accepted_name"`, `"accepted_abbr"`). Must exist in
+#'   renaming (e.g. `"accepted_name"`). Must exist in
 #'   `seed_obj$taxonomy`.
 #'
 #' @return
@@ -2201,9 +2198,6 @@ get_data_by_coordinates <- function(
 #'
 #'   # Rename diatom columns to accepted full names
 #'   res2 <- rename_diatom_columns(res, taxonomy_col = "accepted_name")
-#'
-#'   # Or rename to abbreviations
-#'   res3 <- rename_diatom_columns(res, taxonomy_col = "accepted_abbr")
 #' }
 rename_diatom_columns <- function(seed_obj, taxonomy_col = "accepted_name") {
   # ---------------------------------------------------------------------------
